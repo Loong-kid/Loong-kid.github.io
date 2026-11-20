@@ -1,0 +1,165 @@
+:root {
+  --bg: #f4f0e6;
+  --surface: #fffdf7;
+  --ink: #1c2427;
+  --muted: #5a6467;
+  --line: #e0d9ca;
+  --accent: #16636a;
+  --accent-ink: #ffffff;
+  --chip: #ebe4d4;
+  --grid: rgba(22, 99, 106, 0.07);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121719;
+    --surface: #1a2124;
+    --ink: #ebe7dd;
+    --muted: #a0a9ab;
+    --line: #2b3437;
+    --accent: #62c1bf;
+    --accent-ink: #0c1416;
+    --chip: #243033;
+    --grid: rgba(98, 193, 191, 0.06);
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", "Noto Sans KR", "Noto Sans JP", sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+}
+:lang(ko) body, html:lang(ko) body { word-break: keep-all; }
+a { color: var(--accent); text-underline-offset: 3px; }
+img { max-width: 100%; display: block; }
+[hidden] { display: none !important; }
+
+.wrap { max-width: 920px; margin: 0 auto; padding-inline: 20px; }
+
+/* header */
+.top { border-bottom: 1px solid var(--line); }
+.top .wrap {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px 20px; flex-wrap: wrap; padding-block: 14px;
+}
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  color: var(--ink); text-decoration: none;
+  font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  font-weight: 800; font-size: 1.15rem; letter-spacing: -0.01em;
+}
+.brand svg { width: 26px; height: 26px; flex: none; }
+.nav { display: flex; align-items: center; gap: 6px 18px; flex-wrap: wrap; }
+.nav a { color: var(--muted); text-decoration: none; font-size: 0.95rem; }
+.nav a:hover, .nav a[aria-current="page"] { color: var(--ink); }
+.langs { display: flex; gap: 2px; background: var(--chip); border-radius: 999px; padding: 3px; }
+.langs button {
+  border: 0; background: transparent; color: var(--muted);
+  font: inherit; font-size: 0.82rem; padding: 3px 10px; border-radius: 999px; cursor: pointer;
+}
+.langs button[aria-pressed="true"] { background: var(--surface); color: var(--ink); font-weight: 700; }
+
+/* type */
+h1, h2, h3 {
+  font-family: "Bricolage Grotesque", system-ui, "Noto Sans KR", "Noto Sans JP", sans-serif;
+  line-height: 1.2; letter-spacing: -0.015em; text-wrap: balance; margin: 0;
+}
+h1 { font-size: clamp(2rem, 5.5vw, 3.1rem); font-weight: 800; }
+h2 { font-size: 1.35rem; font-weight: 700; }
+h3 { font-size: 1.12rem; font-weight: 700; }
+.label {
+  font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--muted); font-weight: 600;
+}
+.lead { font-size: 1.1rem; color: var(--muted); max-width: 38em; margin: 0; }
+
+/* hero */
+.hero {
+  padding-block: 64px 48px;
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: -1px -1px;
+  border-bottom: 1px solid var(--line);
+}
+.hero .wrap { display: grid; gap: 18px; }
+
+main { padding-block: 44px 64px; }
+section + section { margin-top: 52px; }
+.section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+
+/* game cards */
+.games { display: grid; gap: 16px; }
+.game {
+  display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 18px 22px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 20px;
+  scroll-margin-top: 20px;
+}
+.game img { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 1px 0 var(--line), 0 6px 18px rgba(0,0,0,0.12); }
+.game-body { display: grid; gap: 8px; min-width: 0; }
+.game p { margin: 0; color: var(--muted); max-width: 40em; }
+.links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 14px; border-radius: 10px; font-size: 0.9rem; font-weight: 600;
+  text-decoration: none; border: 1px solid transparent;
+}
+.btn svg { width: 16px; height: 16px; flex: none; }
+.btn-solid { background: var(--accent); color: var(--accent-ink); }
+.btn-solid:hover { filter: brightness(1.08); }
+.btn-ghost { border-color: var(--line); color: var(--ink); background: transparent; }
+.btn-soon { border: 1px dashed var(--line); color: var(--muted); cursor: default; }
+
+@media (max-width: 520px) {
+  .game { grid-template-columns: 64px minmax(0, 1fr); padding: 16px; gap: 14px; }
+  .game img { width: 64px; height: 64px; border-radius: 15px; }
+}
+
+/* support */
+.contact {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+  padding: 22px; display: grid; gap: 14px;
+}
+.email-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.email {
+  font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 1.05rem;
+  background: var(--chip); padding: 6px 12px; border-radius: 8px; user-select: all;
+  overflow-wrap: anywhere;
+}
+button.btn { font: inherit; font-size: 0.9rem; font-weight: 600; cursor: pointer; }
+.checklist { margin: 0; padding-left: 1.2em; color: var(--muted); }
+.checklist li + li { margin-top: 2px; }
+
+.mini-games { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; margin: 0; }
+.mini-games li {
+  display: flex; align-items: center; gap: 10px; background: var(--surface);
+  border: 1px solid var(--line); border-radius: 12px; padding: 8px 14px 8px 8px; scroll-margin-top: 20px;
+}
+.mini-games img { width: 36px; height: 36px; border-radius: 9px; }
+
+.faq { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.faq > div { padding-block: 16px; border-bottom: 1px solid var(--line); display: grid; gap: 4px; }
+.faq h3 { font-size: 1.02rem; }
+.faq p { margin: 0; color: var(--muted); max-width: 42em; }
+
+/* long text (privacy) */
+.doc { max-width: 42em; }
+.doc h2 { margin-top: 34px; margin-bottom: 8px; font-size: 1.15rem; }
+.doc p, .doc ul { margin: 0 0 10px; }
+.doc li + li { margin-top: 4px; }
+.meta { color: var(--muted); font-size: 0.9rem; margin-top: 10px; }
+
+footer { border-top: 1px solid var(--line); }
+footer .wrap {
+  padding-block: 24px 36px; display: flex; flex-wrap: wrap; gap: 8px 22px;
+  justify-content: space-between; color: var(--muted); font-size: 0.9rem;
+}
+footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
+footer a { color: var(--muted); }
